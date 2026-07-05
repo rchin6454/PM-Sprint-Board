@@ -578,25 +578,56 @@ function rebuild(){
 function loadDemo(){
   document.getElementById('overlay').classList.add('hidden');
   sprints=[
-    {name:'Sprint 3',s:new Date('2026-05-04'),e:new Date('2026-05-15')},
-    {name:'Sprint 4',s:new Date('2026-06-15'),e:new Date('2026-06-26')},
-    {name:'Sprint 5',s:new Date('2026-06-29'),e:new Date('2026-07-10')},
-    {name:'Sprint 6',s:new Date('2026-07-13'),e:new Date('2026-07-24')},
+    {name:'Sprint 1',s:new Date('2026-06-01'),e:new Date('2026-06-12')},
+    {name:'Sprint 2',s:new Date('2026-06-15'),e:new Date('2026-06-26')},
+    {name:'Sprint 3',s:new Date('2026-06-29'),e:new Date('2026-07-10')},
+    {name:'Sprint 4',s:new Date('2026-07-13'),e:new Date('2026-07-24')},
   ];
   stories=[
-    {sprint:'Sprint 3',title:'Bulk upload stakeholder profiles'},
-    {sprint:'Sprint 3',title:'Separation event workflow'},
-    {sprint:'Sprint 4',title:'Select Sale as Event Type'},
-    {sprint:'Sprint 4',title:'Importing data for sale'},
-    {sprint:'Sprint 4',title:'Configure submission type'},
-    {sprint:'Sprint 4',title:'ISO exercises with unissued shares'},
-    {sprint:'Sprint 5',title:'Audit trail export for compliance'},
-    {sprint:'Sprint 5',title:'Currency and exchange rate config v2'},
-    {sprint:'Sprint 5',title:'Nominee details update'},
-    {sprint:'Sprint 6',title:'EMS symbol configuration'},
-    {sprint:'Sprint 6',title:'Form 3921 deployment'},
+    // Sprint 1 — Core payment infrastructure
+    {sprint:'Sprint 1',title:'Merchant onboarding — KYB document upload flow'},
+    {sprint:'Sprint 1',title:'API key generation and secret rotation'},
+    {sprint:'Sprint 1',title:'Sandbox environment with test card tokens'},
+    {sprint:'Sprint 1',title:'Webhook endpoint registration and signature verification'},
+
+    // Sprint 2 — Payment processing
+    {sprint:'Sprint 2',title:'Single payment initiation via REST API'},
+    {sprint:'Sprint 2',title:'Multi-currency support — USD, EUR, GBP, SGD'},
+    {sprint:'Sprint 2',title:'Payment status lifecycle — pending, processing, settled, failed'},
+    {sprint:'Sprint 2',title:'Retry logic for failed transactions with exponential backoff'},
+    {sprint:'Sprint 2',title:'Real-time transaction notification to merchant webhook'},
+
+    // Sprint 3 — Reconciliation and reporting
+    {sprint:'Sprint 3',title:'Daily settlement report generation per merchant'},
+    {sprint:'Sprint 3',title:'Bulk payment file upload — CSV and SFTP ingestion'},
+    {sprint:'Sprint 3',title:'Transaction search and filter dashboard'},
+    {sprint:'Sprint 3',title:'Chargeback initiation and dispute tracking workflow'},
+
+    // Sprint 4 — Compliance and risk
+    {sprint:'Sprint 4',title:'AML screening integration — transaction risk scoring'},
+    {sprint:'Sprint 4',title:'Spending limit controls per merchant and per transaction'},
+    {sprint:'Sprint 4',title:'Audit log export for regulatory reporting'},
+    {sprint:'Sprint 4',title:'Two-factor authentication for merchant portal login'},
   ];
-  var ip={'Bulk upload stakeholder profiles':'ideate','Separation event workflow':'peer','Select Sale as Event Type':'peer','Importing data for sale':'design','Configure submission type':'design','ISO exercises with unissued shares':'eng','Audit trail export for compliance':'eng','Currency and exchange rate config v2':'groom','Nominee details update':'groom','EMS symbol configuration':'test','Form 3921 deployment':'release'};
+  var ip={
+    'Merchant onboarding — KYB document upload flow':'release',
+    'API key generation and secret rotation':'test',
+    'Sandbox environment with test card tokens':'test',
+    'Webhook endpoint registration and signature verification':'groom',
+    'Single payment initiation via REST API':'design',
+    'Multi-currency support — USD, EUR, GBP, SGD':'design',
+    'Payment status lifecycle — pending, processing, settled, failed':'eng',
+    'Retry logic for failed transactions with exponential backoff':'eng',
+    'Real-time transaction notification to merchant webhook':'peer',
+    'Daily settlement report generation per merchant':'peer',
+    'Bulk payment file upload — CSV and SFTP ingestion':'ideate',
+    'Transaction search and filter dashboard':'ideate',
+    'Chargeback initiation and dispute tracking workflow':'ideate',
+    'AML screening integration — transaction risk scoring':'ideate',
+    'Spending limit controls per merchant and per transaction':'ideate',
+    'Audit log export for regulatory reporting':'ideate',
+    'Two-factor authentication for merchant portal login':'ideate',
+  };
   Object.keys(ip).forEach(function(t){var s=stories.find(function(x){return x.title===t});if(s)pos[sk(t,s.sprint)]=ip[t];});
   rebuild();initBoard();
 }
